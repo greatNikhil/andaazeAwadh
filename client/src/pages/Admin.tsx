@@ -16,15 +16,22 @@ const INITIAL_BOOKINGS = [
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
+  // Enforce that an admin password is set via Vite env. Do NOT fall back to a default.
+  const ADMIN_PASSWORD = (import.meta as any).env?.VITE_ADMIN_PASSWORD ?? null;
   const [bookings, setBookings] = useState<any[]>([]);
 
-  // Simple mock authentication
+  // Simple mock authentication (now configurable with VITE_ADMIN_PASSWORD)
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "admin123") {
+    if (!ADMIN_PASSWORD) {
+      alert("Admin password is not configured. Set VITE_ADMIN_PASSWORD in your client/.env or env and restart the dev server.");
+      return;
+    }
+
+    if (password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
     } else {
-      alert("Invalid credentials. Try 'admin123'");
+      alert("Invalid credentials.");
     }
   };
 
@@ -56,7 +63,16 @@ export default function Admin() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="h-12 border-border/50 text-center text-lg tracking-widest focus-visible:ring-accent"
                 />
-                <p className="text-xs text-muted-foreground text-center pt-2">Hint: Use 'admin123'</p>
+                {!(import.meta as any).env?.VITE_ADMIN_PASSWORD && (
+                  <p className="text-xs text-muted-foreground text-center pt-2">
+                    Admin password is NOT configured. Set VITE_ADMIN_PASSWORD in client/.env
+                  </p>
+                )}
+                {import.meta.env?.MODE !== 'production' && (
+                  <p className="text-xs text-muted-foreground text-center pt-2">
+                    dev-debug: VITE_ADMIN_PASSWORD = {((import.meta as any).env?.VITE_ADMIN_PASSWORD) ? '••••••' : '(not set)'}
+                  </p>
+                )}
               </div>
               <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-bold uppercase tracking-widest rounded-none">
                 Login
