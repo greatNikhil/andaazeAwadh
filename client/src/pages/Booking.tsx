@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { CalendarIcon, Clock, Users, User, Phone } from "lucide-react";
-import heroBg from "@/assets/images/hero-bg.png";
+import heroBg from "@/assets/images/2026-02-16.webp";
 
 const bookingSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -73,7 +73,7 @@ export default function Booking() {
         <img 
           src={heroBg} 
           alt="Restaurant Interior" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-bottom"
         />
         <div className="absolute bottom-16 left-16 z-30 max-w-md">
           <h2 className="font-serif text-5xl text-white font-bold mb-4 drop-shadow-md">

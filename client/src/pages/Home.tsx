@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import heroBg from "@/assets/images/hero-bg.png";
+import heroBg from "@/assets/images/2026-02-16.webp";
 import kebabImg from "@/assets/images/kebab.png";
 import biryaniImg from "@/assets/images/biryani.png";
 import shahiTukdaImg from "@/assets/images/shahi-tukda.png";
@@ -13,13 +13,13 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-primary/40 mix-blend-multiply z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background z-20" />
-          <img 
-            src={heroBg} 
-            alt="Royal Awadhi Restaurant Interior" 
-            className="w-full h-full object-cover"
+          <img
+            src={heroBg}
+            alt="Royal Awadhi Restaurant Interior"
+            className="w-full h-full object-cover object-bottom"
           />
         </div>
-        
+
         <div className="relative z-30 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
           <span className="text-accent tracking-[0.3em] uppercase text-sm md:text-base font-semibold mb-6 animate-in slide-in-from-bottom-4 duration-700">
             Welcome to the Royal Cuisine
@@ -27,12 +27,12 @@ export default function Home() {
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 leading-tight drop-shadow-lg animate-in slide-in-from-bottom-6 duration-1000">
             Andaaz <span className="text-accent italic">E</span> Awadh
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-light max-w-2xl mb-12 drop-shadow-md animate-in slide-in-from-bottom-8 duration-1000 delay-150">
+          <p className="text-blue-200 text-lg md:text-xl font-light max-w-2xl mb-12 drop-shadow-md animate-in slide-in-from-bottom-8 duration-1000 delay-150">
             Experience the culinary heritage of the Nawabs. Authentic flavors, royal ambiance, and unmatched hospitality.
           </p>
-          <Button 
-            asChild 
-            size="lg" 
+          <Button
+            asChild
+            size="lg"
             className="bg-accent hover:bg-accent/90 text-primary font-bold px-10 py-7 text-lg uppercase tracking-widest rounded-none border-2 border-accent hover:border-white transition-all duration-300 animate-in slide-in-from-bottom-10 duration-1000 delay-300"
           >
             <Link href="/book" data-testid="hero-book-btn">Book a Table</Link>
@@ -45,9 +45,9 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
           <div className="w-full md:w-1/2">
-            <img 
-              src={biryaniImg} 
-              alt="Authentic Awadhi Biryani" 
+            <img
+              src={biryaniImg}
+              alt="Authentic Awadhi Biryani"
               className="w-full h-[500px] object-cover rounded-t-full shadow-2xl border-4 border-border/50"
             />
           </div>
@@ -57,7 +57,7 @@ export default function Home() {
               <span className="text-accent uppercase tracking-widest text-sm font-semibold">Our Heritage</span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl text-primary font-bold leading-tight">
-              A Legacy of <br/><span className="text-accent">Nawabi</span> Flavors
+              A Legacy of <br /><span className="text-accent">Nawabi</span> Flavors
             </h2>
             <p className="text-muted-foreground leading-relaxed text-lg font-light">
               Originating from the city of Nawabs, Lucknow, Awadhi cuisine is a beautiful blend of complex spices, slow-cooking techniques (Dum Pukht), and rich ingredients like saffron, nuts, and cream.
@@ -103,8 +103,8 @@ export default function Home() {
             ].map((dish, i) => (
               <div key={i} className="group cursor-pointer">
                 <div className="relative h-80 overflow-hidden mb-6 border-2 border-accent/20">
-                  <img 
-                    src={dish.img} 
+                  <img
+                    src={dish.img}
                     alt={dish.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -128,29 +128,29 @@ export default function Home() {
             <div className="space-y-6 text-lg text-muted-foreground font-light">
               <div>
                 <strong className="text-primary font-semibold block mb-1 uppercase tracking-wider text-sm">Location</strong>
-                123 Nawabi Road, Hazratganj<br/>Lucknow, Uttar Pradesh 226001
+                123 Nawabi Road, Hazratganj<br />Lucknow, Uttar Pradesh 226001
               </div>
               <div>
                 <strong className="text-primary font-semibold block mb-1 uppercase tracking-wider text-sm">Hours</strong>
-                Lunch: 12:30 PM - 3:30 PM<br/>
+                Lunch: 12:30 PM - 3:30 PM<br />
                 Dinner: 7:00 PM - 11:30 PM
               </div>
               <div>
                 <strong className="text-primary font-semibold block mb-1 uppercase tracking-wider text-sm">Contact</strong>
-                +91 98765 43210<br/>
+                +91 98765 43210<br />
                 reservations@andaazeawadh.com
               </div>
             </div>
           </div>
           <div className="w-full md:w-1/2 h-full bg-muted grayscale contrast-125 sepia-[.3]">
             {/* Mock map embed since we can't use real Google Maps easily without an API key */}
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.23303649666!2d80.86551694242697!3d26.848694089906473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1709420000000!5m2!1sen!2sin" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.23303649666!2d80.86551694242697!3d26.848694089906473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1709420000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>

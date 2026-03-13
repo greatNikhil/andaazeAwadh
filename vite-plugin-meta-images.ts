@@ -18,12 +18,15 @@ export function metaImagesPlugin(): Plugin {
 
       // Check if opengraph image exists in public directory
       const publicDir = path.resolve(process.cwd(), 'client', 'public');
+      const opengraphWebpPath = path.join(publicDir, '2026-02-16.webp');
       const opengraphPngPath = path.join(publicDir, 'opengraph.png');
       const opengraphJpgPath = path.join(publicDir, 'opengraph.jpg');
       const opengraphJpegPath = path.join(publicDir, 'opengraph.jpeg');
 
       let imageExt: string | null = null;
-      if (fs.existsSync(opengraphPngPath)) {
+      if (fs.existsSync(opengraphWebpPath)) {
+        imageExt = 'webp';
+      } else if (fs.existsSync(opengraphPngPath)) {
         imageExt = 'png';
       } else if (fs.existsSync(opengraphJpgPath)) {
         imageExt = 'jpg';
