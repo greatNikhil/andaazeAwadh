@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroBg from "@/assets/images/2026-02-16.webp";
-import kebabImg from "@/assets/images/kebab.png";
-import biryaniImg from "@/assets/images/biryani.png";
-import shahiTukdaImg from "@/assets/images/shahi-tukda.png";
+import ShahiPaneerImg from "@/assets/images/ShahiPaneer.png";
+import LayoutImg from "@/assets/images/Layout.png";
+import NoodlesImg from "@/assets/images/Noodles.png";
 
 export default function Home() {
   return (
@@ -46,8 +46,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
           <div className="w-full md:w-1/2">
             <img
-              src={biryaniImg}
-              alt="Authentic Awadhi Biryani"
+              src={LayoutImg}
+              alt="Welcomes You"
               className="w-full h-[500px] object-cover rounded-t-full shadow-2xl border-4 border-border/50"
             />
           </div>
@@ -86,19 +86,19 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Galouti Kebab",
-                desc: "Finely minced lamb kebabs that melt in your mouth, infused with over 150 spices.",
-                img: kebabImg
+                title: "Shaahi Paneer",
+                desc: "A delightful variety of paneer dishes prepared with rich spices and authentic Indian flavors to satisfy every paneer lover.",
+                img: ShahiPaneerImg
               },
               {
-                title: "Awadhi Dum Biryani",
-                desc: "Fragrant basmati rice cooked with succulent meat and spices in a sealed handi.",
-                img: biryaniImg
+                title: "Andaaz-E-Awadh is Ready to Welcome You",
+                desc: "Experience the royal taste of authentic Awadhi cuisine, crafted with rich spices and traditional flavors.",
+                img: LayoutImg
               },
               {
-                title: "Shahi Tukda",
-                desc: "Rich bread pudding flavored with saffron, cardamom, and topped with dry fruits.",
-                img: shahiTukdaImg
+                title: "Chinese",
+                desc: "Delicious Chinese dishes made with authentic ingredients and traditional cooking methods.",
+                img: NoodlesImg
               }
             ].map((dish, i) => (
               <div key={i} className="group cursor-pointer">
@@ -128,7 +128,7 @@ export default function Home() {
             <div className="space-y-6 text-lg text-muted-foreground font-light">
               <div>
                 <strong className="text-primary font-semibold block mb-1 uppercase tracking-wider text-sm">Location</strong>
-                123 Nawabi Road, Hazratganj<br />Lucknow, Uttar Pradesh 226001
+                KHASRA NO. 224, Plot no. 07, Kursi Rd,<br /> beside BUILDIA GALAXY APARTMENTS, near INTEGRAL UNIVERSITY, Basaha, Lucknow, Uttar Pradesh 226021, India
               </div>
               <div>
                 <strong className="text-primary font-semibold block mb-1 uppercase tracking-wider text-sm">Hours</strong>
@@ -145,7 +145,7 @@ export default function Home() {
           <div className="w-full md:w-1/2 h-full bg-muted grayscale contrast-125 sepia-[.3]">
             {/* Mock map embed since we can't use real Google Maps easily without an API key */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.23303649666!2d80.86551694242697!3d26.848694089906473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1709420000000!5m2!1sen!2sin"
+              src="https://maps.app.goo.gl/YWAUK7HLG39pev9R8"
               width="100%"
               height="100%"
               style={{ border: 0 }}

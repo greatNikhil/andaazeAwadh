@@ -27,17 +27,36 @@ export default function Footer() {
             <h4 className="font-serif text-2xl font-semibold text-accent">Contact Us</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3 text-primary-foreground/90">
-                <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
-                <p className="font-light">123 Nawabi Road, Hazratganj<br/>Lucknow, Uttar Pradesh 226001</p>
+                <a
+                  href="https://maps.app.goo.gl/Jf9o5N9iBX8bb8fi7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2 cursor-pointer"
+                >
+                  <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
+                  <span>
+                    KHASRA NO. 224, Plot no. 07, Kursi Rd,<br /> beside BUILDIA GALAXY APARTMENTS, near INTEGRAL UNIVERSITY, Basaha, Lucknow, Uttar Pradesh 226021, India
+                  </span>
+                </a>
+
               </div>
               <div className="flex items-center space-x-3 text-primary-foreground/90">
                 <Phone className="w-5 h-5 text-accent shrink-0" />
-                <p className="font-light">+91 98765 43210</p>
+                <a href="tel:+919876543210" className="font-light hover:underline">
+                  +91 98765 43210
+                </a>
               </div>
+
               <div className="flex items-center space-x-3 text-primary-foreground/90">
                 <Mail className="w-5 h-5 text-accent shrink-0" />
-                <p className="font-light">reservations@andaazeawadh.com</p>
+                <a
+                  href="mailto:reservations@andaazeawadh.com"
+                  className="font-light hover:underline"
+                >
+                  reservations@andaazeawadh.com
+                </a>
               </div>
+
             </div>
           </div>
 
@@ -64,7 +83,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-accent/20 text-center flex flex-col items-center">
           <div className="mb-4">
-            <img src="/favicon.png" alt="Icon" className="w-8 h-8 opacity-50 sepia brightness-50 hue-rotate-50" />
+            <img src="/AA.png" alt="Icon" className="w-8 h-8 opacity-50 sepia brightness-50 hue-rotate-50" />
           </div>
           <p className="text-primary-foreground/60 text-sm font-light">
             &copy; {new Date().getFullYear()} Andaaz E Awadh. All rights reserved.

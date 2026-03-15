@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import kebabImg from "@/assets/images/kebab.png";
 import biryaniImg from "@/assets/images/biryani.png";
@@ -99,7 +100,7 @@ const MOCK_MENU = [
     price: 45,
     image: "/images/snacks/bread_pakoda.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 64,
@@ -108,7 +109,7 @@ const MOCK_MENU = [
     price: 160,
     image: "/images/snacks/paneer_pakoda.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 65,
@@ -117,7 +118,7 @@ const MOCK_MENU = [
     price: 130,
     image: "/images/snacks/mix_veg_pakoda.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 66,
@@ -126,7 +127,7 @@ const MOCK_MENU = [
     price: 100,
     image: "/images/snacks/pyaz_pakoda.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 67,
@@ -135,7 +136,7 @@ const MOCK_MENU = [
     price: 40,
     image: "/images/snacks/bread_toast.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 68,
@@ -144,7 +145,7 @@ const MOCK_MENU = [
     price: 40,
     image: "/images/snacks/bread_jam.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 69,
@@ -153,7 +154,7 @@ const MOCK_MENU = [
     price: 50,
     image: "/images/snacks/bun_makhan.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 70,
@@ -162,7 +163,7 @@ const MOCK_MENU = [
     price: 60,
     image: "/images/snacks/poha.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 71,
@@ -171,7 +172,7 @@ const MOCK_MENU = [
     price: 80,
     image: "/images/snacks/puri_sabji.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 72,
@@ -180,7 +181,7 @@ const MOCK_MENU = [
     price: 100,
     image: "/images/snacks/pav_bhaji.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 73,
@@ -189,7 +190,7 @@ const MOCK_MENU = [
     price: 110,
     image: "/images/snacks/misal_pav.webp",
     category: "Snacks",
-    subcategory: "Breakfast"
+    subCategory: "Breakfast"
   },
   {
     id: 74,
@@ -1232,82 +1233,200 @@ const MOCK_MENU = [
 
 
 
-const CATEGORIES = ["ALL", "Snacks", "Starter", "Main Course", "Bevarages", "Buffets" ];
-
+const CATEGORIES = ["ALL", "Snacks", "Starter", "Main Course", "Beverages", "Buffets" ];
+//JAy ho
 export default function Menu() {
-  const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredMenu = activeCategory === "All" 
-    ? MOCK_MENU 
-    : MOCK_MENU.filter(item => item.category === activeCategory);
+  const [activeCategory, setActiveCategory] = useState("ALL")
+   const [location] = useLocation();
+
+   useEffect(() => {
+    setActiveCategory("ALL");
+  }, [location]);
+
+  const filteredMenu =
+    activeCategory === "ALL"
+      ? MOCK_MENU
+      : MOCK_MENU.filter((item) => item.category === activeCategory)
+
+  // GROUP ITEMS BY SUBCATEGORY
+  const groupedMenu = filteredMenu.reduce((acc, item) => {
+
+    const key = item.subCategory || "Others"
+
+    if (!acc[key]) {
+      acc[key] = []
+    }
+
+    acc[key].push(item)
+
+    return acc
+
+  }, {} as Record<string, typeof filteredMenu>)
 
   return (
+
     <div className="min-h-screen bg-background pt-8 pb-24">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
+        {/* PAGE TITLE */}
+
         <div className="text-center mb-16 space-y-6">
+
           <h1 className="font-serif text-5xl md:text-7xl text-primary font-bold tracking-tight">
             Our <span className="text-accent italic">Royal</span> Dastarkhwan
           </h1>
+
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg font-light">
-            A curated selection of authentic Awadhi recipes, prepared with the finest ingredients and centuries-old techniques.
+            A curated selection of authentic Awadhi recipes, prepared with the
+            finest ingredients and centuries-old techniques.
           </p>
+
           <div className="w-24 h-1 bg-accent mx-auto mt-8" />
+
         </div>
 
-        <Tabs defaultValue="All" className="w-full" onValueChange={setActiveCategory}>
+        {/* CATEGORY TABS */}
+
+        <Tabs
+          defaultValue="ALL"
+          value={activeCategory}
+          className="w-full"
+          onValueChange={setActiveCategory}
+        >
+
           <div className="flex justify-center mb-12 overflow-x-auto pb-4 hide-scrollbar">
+
             <TabsList className="bg-transparent h-auto p-0 flex space-x-2 md:space-x-8 border-b border-border/50 rounded-none w-max">
-              {CATEGORIES.map(category => (
-                <TabsTrigger 
-                  key={category} 
+
+              {CATEGORIES.map((category) => (
+
+                <TabsTrigger
+                  key={category}
                   value={category}
-                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none px-4 py-4 text-base uppercase tracking-widest font-medium text-muted-foreground data-[state=active]:text-primary transition-all"
+                  className="data-[state=active]:bg-transparent
+                  data-[state=active]:shadow-none
+                  data-[state=active]:border-b-2
+                  data-[state=active]:border-accent
+                  rounded-none px-4 py-4 text-base uppercase tracking-widest
+                  font-medium text-muted-foreground
+                  data-[state=active]:text-primary transition-all"
                 >
+
                   {category}
+
                 </TabsTrigger>
+
               ))}
+
             </TabsList>
+
           </div>
 
           <TabsContent value={activeCategory} className="mt-0 outline-none">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-16">
-              {filteredMenu.map((item) => (
-                <div key={item.id} className="flex gap-6 group hover:bg-card p-4 -m-4 rounded-xl transition-colors">
-                  <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-2 border-accent/20">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 justify-center">
-                    <div className="flex justify-between items-baseline mb-2">
-                      <h3 className="font-serif text-2xl font-bold text-primary group-hover:text-accent transition-colors">
-                        {item.name}
-                      </h3>
-                      <span className="font-serif text-xl font-semibold text-accent whitespace-nowrap pl-4">
-                        ₹{item.price}
-                      </span>
-                    </div>
-                    <div className="w-full border-b border-dashed border-border/60 mb-3" />
-                    <p className="text-muted-foreground font-light text-sm md:text-base leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
+
+            {/* SUBCATEGORY SECTIONS */}
+
+            {Object.entries(groupedMenu).map(([subCategory, items]) => (
+
+              <div key={subCategory} className="mb-20">
+
+                {/* STICKY SUBCATEGORY HEADING */}
+
+                <div className="sticky top-0 bg-background z-10 py-4">
+
+                  <h2 className="font-serif text-3xl font-bold text-primary border-b border-border pb-3">
+
+                    {subCategory}
+
+                  </h2>
+
                 </div>
-              ))}
-            </div>
-            
-            {filteredMenu.length === 0 && (
-              <div className="text-center py-20 text-muted-foreground">
-                No items found in this category.
+
+                {/* MENU ITEMS */}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 mt-10">
+
+                  {items.map((item) => (
+
+                    <div
+                      key={item.id}
+                      className="flex gap-6 group hover:bg-card p-4 -m-4 rounded-xl transition-colors"
+                    >
+
+                      {/* IMAGE */}
+
+                      <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-2 border-accent/20">
+
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+
+                      </div>
+
+                      {/* TEXT */}
+
+                      <div className="flex flex-col flex-1 justify-center">
+
+                        <div className="flex justify-between items-baseline mb-2">
+
+                          <h3 className="font-serif text-2xl font-bold text-primary group-hover:text-accent transition-colors">
+
+                            {item.name}
+
+                          </h3>
+
+                          <span className="font-serif text-xl font-semibold text-accent whitespace-nowrap pl-4">
+
+                            ₹{item.price}
+
+                          </span>
+
+                        </div>
+
+                        <div className="w-full border-b border-dashed border-border/60 mb-3" />
+
+                        <p className="text-muted-foreground font-light text-sm md:text-base leading-relaxed">
+
+                          {item.description}
+
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
               </div>
+
+            ))}
+
+            {/* EMPTY STATE */}
+
+            {filteredMenu.length === 0 && (
+
+              <div className="text-center py-20 text-muted-foreground">
+
+                No items found in this category.
+
+              </div>
+
             )}
+
           </TabsContent>
+
         </Tabs>
-        
+
       </div>
+
     </div>
-  );
+
+  )
+
 }
